@@ -1,0 +1,13 @@
+# gitignore file
+.idea/
+venv
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.swp
+*.sqlite3
+*.db
+*.cache
+*.DS_Store
+
