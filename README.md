@@ -32,6 +32,7 @@ Apology Machine is a playful and innovative project developed for the "Terrible 
 3. Install the required dependencies:
    ```
    pip install -r requirements.txt
+   uvicorn app.main:app --reload 
    ```
 
 ## Usage
