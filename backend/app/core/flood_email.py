@@ -25,6 +25,7 @@ def send_email(receiver, subject, message, attachments=None):
         for attachment in attachments:
             email.attach(attachment)
 
+<<<<<<< HEAD
     context = ssl.create_default_context()
     try:
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
@@ -35,3 +36,8 @@ def send_email(receiver, subject, message, attachments=None):
         return False
 
     return True
+=======
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+        server.login(sender, password)
+        server.sendmail(sender, receiver, email.as_string())
+>>>>>>> 52c057999c24127d961c02032d0fdf11a100bdbe
