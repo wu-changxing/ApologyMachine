@@ -3,6 +3,7 @@ import os
 import re
 from dotenv import load_dotenv
 load_dotenv()
+import csv
 
 
 # Find the default adapter
@@ -62,13 +63,27 @@ def get_bssids(adapter, adapterMonitor):
         step = 3
 
         # Get BSSIDs of nearby devices
-        output = subprocess.run(['sudo', 'timeout', '10', 'airodump-ng', adapterMonitor], input=f"{sudoPass}\n", universal_newlines=True , text=True)
-        print(output)
-        bssids = re.findall(r'(?:[0-9A-Fa-f]:?){12}', output)
+        # output = subprocess.run(['sudo', 'timeout', '10', 'airodump-ng', adapterMonitor], input=f"{sudoPass}\n", universal_newlines=True , text=True)
+        # print(output)
+        # bssids = re.findall(r'(?:[0-9A-Fa-f]:?){12}', output)
 
-        return bssids
+        # command = ['sudo', 'timeout', '1', 'airodump-ng', adapterMonitor, '--output-format', 'csv']
+        # output = subprocess.check_output(command)
+        print("HERE")
+        output = subprocess.Popen(['sudo', 'timeout', '1', 'airodump-ng', adapterMonitor], input=f"{sudoPass}\n", text=True, stdout=subprocess.PIPE)
+        result = output.stdout
+        lines = result.split('\n')
+
+        return result
+
+        # Parsing BSSIDs using regex
+        bssid_list = re.findall(r'((?:[0-9A-Fa-f]{2}:){5}(?:[0-9A-Fa-f]{2}))', output)
+        
+        return bssid_list
     except subprocess.CalledProcessError as e:
         print("Command execution failed:", e)
+        stop_monitor(adapterMonitor)
+        start_services()
         return []
 
 
