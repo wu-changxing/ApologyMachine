@@ -8,6 +8,7 @@ import Blanko from "./components/Blanko"; // Import the new Blanko component
 import Slido from "./components/Slido"; // Import the new Slido component
 import Tetro from "./components/Tetro"; // Import the new Tetro component
 import Landing from "./components/Landing"; // Import the new Landing component
+import Login from "./components/Login"; // Import the new Login component
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <main className="flex flex-1 justify-center items-center">
           <Routes>
             <Route exact path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Blanko />} />
             <Route path="/slido" element={<Slido />} />
             <Route path="/tetro" element={<Tetro />} />
