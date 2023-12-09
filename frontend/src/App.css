@@ -26,9 +26,23 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  width: 10000px;
 }
 
 button:hover {
   background-color: #45a049;
+}
+
+
+
+/*
+1. teh header section must be divided; the first half will contain the image and the second half will contain the content.
+
+*/
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  /* Adjust as needed */
+  align-items: center;
+  /* Adjust as needed */
 }
