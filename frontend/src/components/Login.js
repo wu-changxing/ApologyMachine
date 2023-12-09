@@ -22,53 +22,41 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-200">
-      <div className="py-6 px-8 mt-4 text-left bg-white shadow-lg">
-        <h3 className="text-2xl font-bold text-center">
-          Login to your account
-        </h3>
-        <form onSubmit={handleSubmit}>
-          <div className="mt-4">
-            <div>
-              <label className="block" htmlFor="email">
-                Email
-              </label>
-              <div className="flex items-center mt-1">
-                <FaEnvelope className="mr-2" />
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-96">
+          <h3 className="text-3xl font-semibold text-center mb-6">Login to your account</h3>
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-4">
+              <div className="flex items-center border rounded-md p-2">
+                <FaEnvelope className="text-gray-400 mr-2" />
                 <input
-                  type="email"
-                  placeholder="Email"
-                  id="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="py-2 px-4 w-full rounded-md border focus:ring-1 focus:ring-blue-600 focus:outline-none"
+                    type="email"
+                    placeholder="Email"
+                    id="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="flex-grow py-2 px-2 outline-none"
                 />
               </div>
-            </div>
-            <div className="mt-4">
-              <label className="block">Password</label>
-              <div className="flex items-center mt-1">
-                <FaLock className="mr-2" />
+              <div className="flex items-center border rounded-md p-2">
+                <FaLock className="text-gray-400 mr-2" />
                 <input
-                  type="password"
-                  placeholder="Password"
-                  id="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="py-2 px-4 w-full rounded-md border focus:ring-1 focus:ring-blue-600 focus:outline-none"
+                    type="password"
+                    placeholder="Password"
+                    id="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="flex-grow py-2 px-2 outline-none"
                 />
               </div>
-            </div>
-            <div className="flex justify-between items-baseline">
-              <button className="py-2 px-6 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">
                 Login
               </button>
-              <a href="#" className="text-sm text-blue-600 hover:underline">
+              <a href="#" className="text-blue-600 hover:underline text-sm">
                 Forgot password?
               </a>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
   );
 }
 
