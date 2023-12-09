@@ -23,7 +23,22 @@ def get_wifi_networks():
 
     # decode the result
     networks = result.decode('utf-8', errors="backslashreplace")
-    print(networks)
+    # 分割字符串为行
+    lines = networks.strip().split("\n")
 
-# detect the operating system and get the WiFi network list
-get_wifi_networks()
+    network = []
+    for line in lines[1:]:  # 跳过标题行
+        parts = line.split()
+        network_info = {
+            "SSID": parts[0],
+            "BSSID": parts[1],
+            "RSSI": parts[2],
+            "CHANNEL": parts[3],
+            "HT": parts[4],
+            "CC": parts[5],
+            "SECURITY": " ".join(parts[6:])  # 剩余的部分作为一个字符串
+        }
+        network.append(network_info)
+
+    return network  # 直接返回列表，而非 JSON 字符串
+

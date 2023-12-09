@@ -1,7 +1,7 @@
 import React from "react";
 import SorryLogo from "../assets/wifi-robot-say-sorry_1.png";
 import { FaRobot } from "react-icons/fa";
-
+import NetworkList from "./NetworkList";
 function Landing() {
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
@@ -26,15 +26,7 @@ function Landing() {
                 </p>
             </div>
             <div className="flex space-x-4 mt-6">
-                <button className="py-2 px-4 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700">
-                    Target 1
-                </button>
-                <button className="py-2 px-4 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700">
-                    Target 2
-                </button>
-                <button className="py-2 px-4 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700">
-                    Target 3
-                </button>
+                <NetworkList />
             </div>
             <div className="p-6">
                 <button className="py-2 px-4 font-bold text-white bg-red-500 rounded-full hover:bg-red-700">
