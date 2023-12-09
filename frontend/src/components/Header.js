@@ -10,12 +10,12 @@ const Header = () => {
                 <nav className="text-lg">
                     <Link to="/" className="hidden md:inline">Home</Link>
                     <Link to="/login" className="hidden md:inline"> | Login</Link>
-                    <Link to="/select" className="hidden md:inline"> | Target</Link>
+                    <Link to="/strategy" className="hidden md:inline"> | Target</Link>
                     <Link to="/start" className="hidden md:inline"> | Start</Link>
 
                     <Link to="/" className="md:hidden">H</Link>
                     <Link to="/login" className="md:hidden"> | L</Link>
-                    <Link to="/select" className="md:hidden"> | T</Link>
+                    <Link to="/strategy" className="md:hidden"> | T</Link>
                     <Link to="/start" className="md:hidden"> | S</Link>
                 </nav>
             </div>

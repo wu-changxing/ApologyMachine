@@ -20,7 +20,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/select" element={<Strategy />} />
+            <Route path="/strategy" element={<Strategy />} />
             <Route path="/home" element={<Blanko />} />
             <Route path="/slido" element={<Slido />} />
             <Route path="/tetro" element={<Tetro />} />
