@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import SorryLogo from "../assets/wifi-robot-say-sorry_1.png";
 import { FaRobot } from "react-icons/fa";
 
@@ -42,11 +41,7 @@ function Landing() {
                     <FaRobot className="inline-block mr-2" /> Attack!
                 </button>
             </div>
-            <Link to="/payment">
-                <button>Make a Payment</button>
-            </Link>
         </div>
-       
     );
 }
 

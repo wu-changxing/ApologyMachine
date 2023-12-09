@@ -1,8 +1,7 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Home = () => {
     const [gamesWon, setGamesWon] = useState(0);
-
 
     useEffect(() => {
         const storedGamesWon = localStorage.getItem('gamesWon');
