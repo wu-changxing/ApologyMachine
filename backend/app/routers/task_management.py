@@ -21,7 +21,7 @@ class UserInput(BaseModel):
     
 @router.get("/redirect-me")
 async def redirect_me():
-    target_url = "http://127.0.0.1:5500/"
+    target_url = "http://127.0.0.1:3000/"
     return RedirectResponse(url=target_url)
 
 @router.post("/submit-user-data")
