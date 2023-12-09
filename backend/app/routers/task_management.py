@@ -5,7 +5,7 @@ from redis import Redis
 import subprocess
 from starlette.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
-
+from ..core.scan import get_wifi_networks
 router = APIRouter()
 
 # Set up Redis connection and RQ queue
@@ -31,10 +31,10 @@ async def submit_user_data(user_input: UserInput):
     
 # we URL
 # scan wifi
-@router.post("/scan", response_model=dict)
+@router.get("/scan", response_model=dict)
 async def begin_scan() -> dict:
-    # job = queue.enqueue(execute_shell_command, "python3 /home/attack.py")
-    return {'scan': 'OK'}
+    network = get_wifi_networks()
+    return {"network": network}
 
 # select wifi
 @router.post("/attack/{wifi_id}", response_model=dict)
