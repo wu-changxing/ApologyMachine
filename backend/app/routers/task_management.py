@@ -4,6 +4,7 @@ from rq import Queue
 from redis import Redis
 import subprocess
 from starlette.responses import RedirectResponse
+from pydantic import BaseModel, EmailStr
 
 router = APIRouter()
 
@@ -11,11 +12,23 @@ router = APIRouter()
 redis_conn = Redis()
 queue = Queue(connection=redis_conn)
 
+class UserInput(BaseModel):
+    username: str
+    email_address: EmailStr
+    receiver: str
+    receiver_email_address: EmailStr
+    message: str
+    
 @router.get("/redirect-me")
 async def redirect_me():
     target_url = "http://127.0.0.1:5500/"
     return RedirectResponse(url=target_url)
 
+@router.post("/submit-user-data")
+async def submit_user_data(user_input: UserInput):
+    print(f"Received user data: {user_input.username}, {user_input.emailaddress}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
+    return {"message": "User data received successfully."}
+    
 # we URL
 # scan wifi
 @router.post("/scan", response_model=dict)
