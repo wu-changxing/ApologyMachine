@@ -32,10 +32,12 @@ else:
 
 
 # Collect all BSSID and channels
-def get_bssids(interface):
+def get_bssids(adapter, adapterMonitor):
     try:
-        password = "sudo"  # Replace with sudo password
-        command = ['sudo', 'airodump-ng', '-w', 'output_file', '--output-format', 'csv', interface]
+        password = "leo"  # Replace with sudo password
+        subprocess.run(["sudo", "airmon-ng", "start", adapter], input=f"{password}\n", check=True, text=True)
+
+        command = ['sudo', 'airodump-ng', '-w', 'output_file', '--output-format', 'csv', adapterMonitor]
         output = subprocess.run(command, input=f"{password}\n", encoding='ascii', capture_output=True, text=True)
         lines = output.decode('utf-8').split('\n')
         bssids = []
@@ -48,8 +50,11 @@ def get_bssids(interface):
         print("Command execution failed:", e)
         return []
 
-interface_name = 'eth0'  # Change this to your wireless interface name
-bssid_list = get_bssids(interface_name)
+
+# Get the BSSIDs
+adapter = 'eth0'  # Change this to your wireless interface name
+adapterMonitor = 'eth0mon'
+bssid_list = get_bssids(adapter, adapterMonitor)
 print("List of BSSIDs:")
 print(bssid_list)
 
