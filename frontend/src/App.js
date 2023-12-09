@@ -1,48 +1,30 @@
+import "./App.css";
 import React from "react";
-import SorryLogo from "./assets/wifi-robot-say-sorry_1.png";
-
-import Welcome from "./Components/Welcome.js";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./components/Home"; // Import the new Home component
+import Blanko from "./components/Blanko"; // Import the new Blanko component
+import Slido from "./components/Slido"; // Import the new Slido component
+import Tetro from "./components/Tetro"; // Import the new Tetro component
+import Landing from "./components/Landing"; // Import the new Landing component
 
 function App() {
   return (
-    <>
-      <div className="p-6 bg-gray-100">
-        <div className="flex items-center space-x-4">
-          <img src={SorryLogo} alt="logo" className="w-24 h-24" />
-          <p className="text-lg text-gray-700">
-            Hi! my name is Roy Batty. I am an AI and I am perfect. I will never
-            apologise for anything.
-          </p>
-        </div>
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex flex-1 justify-center items-center">
+          <Routes>
+            <Route exact path="/" element={<Landing />} />
+            <Route path="/home" element={<Blanko />} />
+            <Route path="/slido" element={<Slido />} />
+            <Route path="/tetro" element={<Tetro />} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
-      <div className="p-6">
-        <p className="text-xl font-semibold">
-          Laugh It Off with Apology Machine: Where Regrets Come with a Side of
-          Humor!
-        </p>
-        <p className="mt-2 text-md">Apology joke of the day:</p>
-        <p className="mt-1 text-gray-600">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at
-          lacus mauris. Morbi laoreet sollicitudin leo dignissim interdum.
-        </p>
-      </div>
-      <div className="flex p-6 space-x-4">
-        <button className="py-2 px-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
-          target 1
-        </button>
-        <button className="py-2 px-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
-          target 2
-        </button>
-        <button className="py-2 px-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
-          target 3
-        </button>
-      </div>
-      <div className="p-6">
-        <button className="py-2 px-4 font-bold text-white bg-red-500 rounded hover:bg-red-700">
-          Attack!
-        </button>
-      </div>
-    </>
+    </Router>
   );
 }
 
