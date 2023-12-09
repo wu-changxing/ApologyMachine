@@ -6,7 +6,7 @@ import ssl
 
 password = os.environ.get("EMAIL_PASSWORD")
 
-def send_email(sender, receiver, subject, message, attachments=None):
+def send_email(sender, receiver, subject, message):
     email = MIMEMultipart()
     email["From"] = sender
     email["To"] = receiver
@@ -19,4 +19,4 @@ def send_email(sender, receiver, subject, message, attachments=None):
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
         server.login(sender, password)
-        server.sendmail(receiver, sender, email.as_string())
+        server.sendmail(sender, receiver, email.as_string())
