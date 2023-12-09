@@ -9,6 +9,7 @@ import Slido from "./components/Slido"; // Import the new Slido component
 import Tetro from "./components/Tetro"; // Import the new Tetro component
 import Landing from "./components/Landing"; // Import the new Landing component
 import Login from "./components/Login"; // Import the new Login component
+import Strategy from "./components/Strategy"; // Import the new Strategy component
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/select" element={<Strategy />} />
             <Route path="/home" element={<Blanko />} />
             <Route path="/slido" element={<Slido />} />
             <Route path="/tetro" element={<Tetro />} />
