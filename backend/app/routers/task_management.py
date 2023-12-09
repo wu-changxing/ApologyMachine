@@ -10,6 +10,11 @@ router = APIRouter()
 redis_conn = Redis()
 queue = Queue(connection=redis_conn)
 
+@router.get("/redirect-me")
+async def redirect_me():
+    target_url = "http://127.0.0.1:5500/"
+    return RedirectResponse(url=target_url)
+
 # we URL
 # scan wifi
 @router.post("/scan", response_model=dict)
