@@ -1,0 +1,72 @@
+import RPi.GPIO as GPIO
+import time
+from gtts import gTTS
+import os
+import random
+
+# Use the Broadcom SOC channel, which maps the pin numbers like the GPIO numbers on the Pi.
+GPIO.setmode(GPIO.BCM)
+
+# Set up pin 18 and 23 as an input and enable internal pull-up resistor
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+# Set up pin 24 and 25 as an output
+GPIO.setup(24, GPIO.OUT)
+GPIO.setup(25, GPIO.OUT)
+
+
+def blink_led(pin, times=5, interval=0.5):
+    """Blink an LED for a certain number of times."""
+    for _ in range(times):
+        GPIO.output(pin, GPIO.HIGH)  # Turn LED on
+        time.sleep(interval)
+        GPIO.output(pin, GPIO.LOW)  # Turn LED off
+        time.sleep(interval)
+
+
+def speak(text):
+    """Convert text to speech."""
+    tts = gTTS(text=text, lang='en')
+    filename = 'temp.mp3'
+    tts.save(filename)
+    os.system("mpg321 " + filename)
+
+
+try:
+    while True:
+        # Check the state of the buttons
+        button1_state = GPIO.input(18)
+        button2_state = GPIO.input(23)
+
+        if button1_state == GPIO.LOW and button2_state == GPIO.LOW:  # Both buttons are pressed
+            # Generate a random number between 0 and 1
+            random_number = random.random()
+
+            if random_number < 0.50:  # 50% chance of this happening
+                print("I am too tired. Not executing any function.")
+                speak("I am too tired.")
+            else:
+                print("Both buttons are pressed. Executing a special function and blinking both LEDs.")
+                blink_led(24)  # Blink LED 1
+                blink_led(25)  # Blink LED 2
+                speak("Stop confusing me!")
+
+        elif button1_state == GPIO.LOW:  # Only Button 1 is pressed
+            print("Button 1 is pressed. Executing function 1 and blinking LED 1.")
+            # I suggest we can start the wifi jammer from here
+
+            blink_led(24)  # Blink LED 1
+
+        elif button2_state == GPIO.LOW:  # Only Button 2 is pressed
+            print("Button 2 is pressed. Executing function 2 and blinking LED 2.")
+            # email spamming
+
+            blink_led(25)  # Blink LED 2
+
+        # Sleep for a short period to prevent rapid state changes from being printed
+        time.sleep(0.1)
+
+except KeyboardInterrupt:
+    # Clean up the GPIO on exit
+    GPIO.cleanup()
