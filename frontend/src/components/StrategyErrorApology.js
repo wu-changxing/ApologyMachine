@@ -18,7 +18,7 @@ const StrategyErrorApology = () => {
           receiver_email_address: receiverEmail,
           message: message
         };
-      
+        console.log(userData);
         try {
           const response = await fetch("http://localhost:8000/submit-user-data", {
             method: "POST",
