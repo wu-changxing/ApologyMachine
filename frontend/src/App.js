@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import Landing from "./components/Landing"; // Import the new Landing component
 import Login from "./components/Login"; // Import the new Login component
 import Strategy from "./components/Strategy"; // Import the new Strategy component
-
+import Payment from "./components/Payment";
 function App() {
   return (
     <Router>
@@ -17,6 +17,8 @@ function App() {
             <Route exact path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/strategy" element={<Strategy />} />
+            <Route path="/payment" element={<Payment />} />
+
           </Routes>
         </main>
         <Footer />
