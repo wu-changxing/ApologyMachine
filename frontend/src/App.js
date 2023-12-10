@@ -3,10 +3,15 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Home from "./components/Home"; // Import the new Home component
+
 import Landing from "./components/Landing"; // Import the new Landing component
 import Login from "./components/Login"; // Import the new Login component
 import Strategy from "./components/Strategy"; // Import the new Strategy component
+import aaa from "./components/aaa"; // Import the new aaa component
+import bbb from "./components/bbb"; // Import the new bbb component
+import PopApology from "./components/PopApology"; // Import the new PopApology component
+import StrategyErrorApology from "./components/StrategyErrorApology"; // Import the new StrategyErrorApology component
+
 
 function App() {
   return (
@@ -18,6 +23,10 @@ function App() {
             <Route exact path="/" element={<Login />} />
             <Route path="/Landing" element={<Landing />} />
             <Route path="/strategy" element={<Strategy />} />
+            <Route path="/aaa" element={<aaa />} />
+            <Route path="/bbb" element={<bbb />} />
+            <Route path="/PopApology" element={<PopApology />} />
+            <Route path="/StrategyErrorApology" element={<StrategyErrorApology />} />
           </Routes>
         </main>
         <Footer />
