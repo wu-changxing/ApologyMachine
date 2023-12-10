@@ -15,6 +15,11 @@ const PopApology = () => {
         setResponse(responseType);
         submitUserData();
     };
+    const handle_Response = (responseType) => {
+        setResponse(responseType);
+        submit_UserData();
+    };
+    
     async function submitUserData() {
         // 从 localStorage 获取数据
         const username = localStorage.getItem("username");
@@ -50,21 +55,22 @@ const PopApology = () => {
       }
     
     // 点击No worries按钮时 使用
-    async function submitUserData() {
+    async function submit_UserData() {
         // 从 localStorage 获取数据
         const username = localStorage.getItem("username");
         const email = localStorage.getItem("email");
         const receiverName = localStorage.getItem("receiverName");
         const receiverEmail = localStorage.getItem("receiverEmail");
         const message = localStorage.getItem("message");
-        
+        const strategy = localStorage.getItem("strategy");
         // 构造要发送的数据
         const userData = {
-            username: username,
-            email_address: email,
-            receiver: receiverName,
-            receiver_email_address: receiverEmail,
-            message: message
+          username: username,
+          email_address: email,
+          receiver: receiverName,
+          receiver_email_address: receiverEmail,
+          message: message,
+          strategy: strategy
         };
         console.log(userData);
         try {
@@ -102,7 +108,7 @@ const PopApology = () => {
                 <div className="flex space-x-4">
                     <button
                         className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600"
-                        onClick={() => handleResponse('No worries')}
+                        onClick={() => handle_Response('No worries')}
                     >
                         No worries :)
                     </button>
