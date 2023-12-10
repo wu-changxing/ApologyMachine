@@ -22,10 +22,10 @@ const Receiver = () => {
     console.log('Name and Email saved to localStorage');
 
     // 检查 email 是否已输入
-    if (email) {
+    if (name && email) {
       navigate("/strategy"); // 如果 email 已输入，进行导航
     } else {
-      alert("Please enter an email address!"); // 如果 email 为空，显示提示
+      alert("Name an email address cannot be empty!"); // 如果 email 为空，显示提示
     }
   };
 
