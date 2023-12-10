@@ -9,14 +9,8 @@ const Header = () => {
                 <img src={logo} alt="Logo" className="h-12 w-12 mx-2" />
                 <nav className="text-lg">
                     <Link to="/" className="hidden md:inline">Home</Link>
-                    <Link to="/login" className="hidden md:inline"> | Login</Link>
-                    <Link to="/strategy" className="hidden md:inline"> | Target</Link>
-                    <Link to="/start" className="hidden md:inline"> | Start</Link>
 
                     <Link to="/" className="md:hidden">H</Link>
-                    <Link to="/login" className="md:hidden"> | L</Link>
-                    <Link to="/strategy" className="md:hidden"> | T</Link>
-                    <Link to="/start" className="md:hidden"> | S</Link>
                 </nav>
             </div>
         </header>
