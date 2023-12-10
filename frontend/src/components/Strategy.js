@@ -15,10 +15,12 @@ const strategies = [
     // ... add more strategies as needed
 ];
 
+
 const Strategy = () => {
     const [selectedStrategy, setSelectedStrategy] = useState(null);
     const [customApology, setCustomApology] = useState('');
     const [hoveredStrategy, setHoveredStrategy] = useState('');
+    const [clickedStrategyDescription, setClickedStrategyDescription] = useState('');
     const strategyDescriptions = {
         'Polite Regret Waltz': "So, I heard I messed up. If that's a big deal to you, my bad. If not, cool. Either way, here's an apology, sort of.",
         'Wonderland': "🙈✨ Heyyyyyy, so, I guess I need to, like, apologize or whatever? 😅 My bad for the thing that happened, or didn't happen... I'm, like, totally not keeping track. 🤷‍♂️ Can you feel the overwhelming insincerity radiating from this emoji extravaganza? 🌈😂 It's like a rainbow of fake apologies. 🌈🤮 Let's sweep this under the rug and move on to a world where sincerity is overrated. 🧹🚶‍♂️",
@@ -37,8 +39,9 @@ const Strategy = () => {
 
     const handleStrategySelect = (strategy) => {
         setSelectedStrategy(strategy);
-        // You might not need to set the hoveredStrategy on select if the tooltip only shows on hover
-        // setHoveredStrategy(strategyDescriptions[strategy]);
+        setClickedStrategyDescription(strategyDescriptions[strategy]);
+        // You might also want to clear the hovered strategy here
+        setHoveredStrategy('');
     };
 
     const handleStrategyHover = (strategy) => {
@@ -75,6 +78,12 @@ const Strategy = () => {
                                      )}
                             </div>
                         ))}
+                        {/* Display clicked strategy's description */}
+                        {clickedStrategyDescription && (
+                            <div className="fixed-description">
+                                {clickedStrategyDescription}
+                            </div>
+                        )}
                     </div>
                     {/* ... rest of your component */}
                 </div>
