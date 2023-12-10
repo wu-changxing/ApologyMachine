@@ -8,6 +8,7 @@ from pydantic import BaseModel, EmailStr
 from ..core.scan_network import get_wifi_networks
 from fastapi import Query
 from ..core.flood_email import send_email
+from core import flood_wifi_AP
 
 router = APIRouter()
 
@@ -54,3 +55,12 @@ async def begin_scan(page: int = Query(1, alias="page"), pageSize: int = Query(1
     end = start + pageSize
     network = all_networks[start:end]
     return {"network": network}
+@router.post("/flood-essid")
+async def flood_essid(essids: str):
+    # Split the long string into a list of sentences
+    sentences = [essids]  # In this case, it's just one long sentence
+
+    # Enqueue the flood_wifi_AP task with the sentences
+    job = queue.enqueue(flood_wifi_AP, sentences)
+
+    return {"message": "ESSID flood task started", "job_id": job.get_id()}
