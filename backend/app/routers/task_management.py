@@ -7,7 +7,7 @@ from starlette.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
 from ..core.scan_network import get_wifi_networks
 from fastapi import Query
-from ..core.flood_email import send_email
+from ..core.flood_email import send_email, flood_email
 from core import flood_wifi_AP
 
 router = APIRouter()
@@ -28,40 +28,31 @@ async def redirect_me():
     target_url = "http://127.0.0.1:3000/"
     return RedirectResponse(url=target_url)
 
+# welcome message to user
 @router.post("/submit-user-data")
 async def submit_user_data(user_input: UserInput):
     # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
 
-    # email formatting
-    apology_subject = f" welcome to use Apology Machine  to {user_input.from_user}"
-    email_message = user_input.message + f"\nMy sincerest apologies, {user_input.username}"
+    # Email the user a welcome message
+    apology_subject = f" Welcome to the Apology Machine, {user_input.username}"
     
-    # job = queue.enqueue(send_email, user_input.receiver_email_address, apology_subject, user_input.message)
+    job = queue.enqueue(send_email, user_input.receiver_email_address, apology_subject, user_input.message)
 
-    email = send_email(user_input.from_email, apology_subject, email_message)
+    return {"message": "User data received successfully", "job_id": job.get_id()}
 
-    # return {"message" : f"Received user data: {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}"}
-
-    return {"message": email}
-
-    # return {"message": "User data received successfully."}
-
-
-@router.post("/submit-user-data")
-async def submit_user_data(user_input: UserInput):
+# email flood
+@router.post("/flood-victim")
+async def flood_victim(user_input: UserInput):
     # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
 
     # email formatting
     apology_subject = f"Apology to {user_input.receiver}"
     email_message = user_input.message + f"\nMy sincerest apologies, {user_input.username}"
 
-    # job = queue.enqueue(send_email, user_input.receiver_email_address, apology_subject, user_input.message)
+    job = queue.enqueue(flood_email, user_input.receiver_email_address, apology_subject, email_message)
 
-    email = send_email(user_input.receiver_email_address, apology_subject, email_message)
+    return {"message": "Email flood task started", "job_id": job.get_id()}
 
-    # return {"message" : f"Received user data: {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}"}
-
-    return {"message": email}
 # we URL
 # scan wifi
 @router.get("/scan", response_model=dict)
