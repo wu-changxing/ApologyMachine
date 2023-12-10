@@ -65,10 +65,14 @@ const Strategy = () => {
                                     className={`flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-bg-100 bg-primary-500 hover:bg-primary-600 focus:outline-none focus:border-primary-600 focus:ring focus:ring-primary-500 active:bg-primary-700 transition duration-150 ease-in-out ${selectedStrategy === strategy ? 'ring-2 ring-offset-2 ring-primary-500' : ''}`}
                                     onClick={() => handleStrategySelect(strategy)}
                                 >
-                                    {selectedStrategy === strategy && <IoMdCheckmarkCircleOutline className="text-lg mr-2 text-bg-100" />}
+                                    {selectedStrategy === strategy && <IoMdCheckmarkCircleOutline />}
                                     {strategy}
                                 </button>
-                                {hoveredStrategy === strategyDescriptions[strategy] && <Tooltip description={hoveredStrategy} />}
+                                {hoveredStrategy === strategyDescriptions[strategy] && (
+                                    <div className="tooltip-content">
+                                        {hoveredStrategy}
+                                    </div>
+                                     )}
                             </div>
                         ))}
                     </div>
