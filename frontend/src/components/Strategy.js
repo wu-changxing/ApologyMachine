@@ -23,7 +23,7 @@ const Strategy = () => {
     const handleCustomApologyChange = (event) => {
         setCustomApology(event.target.value);
     };
-    const linkPath = customApology ? "/StrategyErrorApology" : "/bb";
+    const linkPath = customApology ? "/StrategyErrorApology" : "/PopApology";
 
     return (
         <div className="min-h-screen bg-bg-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">

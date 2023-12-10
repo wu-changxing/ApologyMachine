@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 const StrategyErrorApology = () => {
     const [response, setResponse] = useState('');
 
@@ -30,14 +30,17 @@ const StrategyErrorApology = () => {
                     <button
                         className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600"
                         onClick={() => handleResponse("It's fine :)")}
-                    >
-                        It's fine :)
+                    >   
+                        <Link to="/PopApology" >
+                            It's fine :)
+                        </Link>
+                        
                     </button>
                     <button
                         className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600"
                         onClick={() => handleResponse('How dare you!')}
-                    >
-                        How dare you!
+                    >   
+                            How dare you!
                     </button>
                 </div>
             </div>
