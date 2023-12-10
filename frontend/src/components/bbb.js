@@ -1,6 +1,6 @@
 import React from 'react';
 
-const bbb = () => {
+const Bbb = () => {
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
       <h1>Welcome to the Template Page</h1>
@@ -10,4 +10,4 @@ const bbb = () => {
   );
 };
 
-export default bbb;
+export default Bbb;
