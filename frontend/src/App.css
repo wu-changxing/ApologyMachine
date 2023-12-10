@@ -1,8 +1,7 @@
-/* App.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+<<<<<<< HEAD
 
 
 
@@ -51,3 +50,5 @@ button:hover {
   justify-content: space-between;
   align-items: center;
 }
+=======
+>>>>>>> 8933b389d9e382bd1aead668dee5bc69ddb7794a
