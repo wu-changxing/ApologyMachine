@@ -22,6 +22,7 @@ class UserInput(BaseModel):
     receiver: str
     receiver_email_address: EmailStr
     message: str
+    strategy: str
     
 @router.get("/redirect-me")
 async def redirect_me():
@@ -39,6 +40,19 @@ async def submit_user_data(user_input: UserInput):
     job = queue.enqueue(send_email, user_input.receiver_email_address, apology_subject, user_input.message)
 
     return {"message": "User data received successfully", "job_id": job.get_id()}
+
+# welcome message to user if user clicks <<No worries>>
+@router.post("/submit-user-data-2")
+async def submit_user_data(user_input: UserInput):
+    # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
+
+    # Email the user a welcome message
+    apology_subject = f" Welcome to the Apology Machine, {user_input.username}"
+    
+    job = queue.enqueue(send_email, user_input.receiver_email_address, apology_subject, user_input.message)
+
+    return {"message": "User data received successfully", "job_id": job.get_id()}
+
 
 # email flood
 @router.post("/flood-victim")

@@ -15,7 +15,6 @@ const strategies = [
     // ... add more strategies as needed
 ];
 
-
 const Strategy = () => {
     const [selectedStrategy, setSelectedStrategy] = useState(null);
     const [customApology, setCustomApology] = useState('');
@@ -30,18 +29,22 @@ const Strategy = () => {
         'Eco': "I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry, I’m sorry...",
         'Sorry Flood Melody': "My bad for that sorry, and my bad for apologising about saying sorry. Actually, my bad for everything, whether it happened or not. Sorry for this text, and sorry for any texts in the future. Just really, sincerely, ridiculously sorry.",
         'Deliberate Cadence': "In accordance with the socio-professional dynamics of the contextual paradigm, I hereby extend my apologies for the inadvertent alignment deviation.",
+    }
+    const handleStrategySelect = (strategy) => {
+        setSelectedStrategy(strategy);
+        setClickedStrategyDescription(strategyDescriptions[strategy]);
+        localStorage.setItem('strategy', strategy); // Store the selected strategy
+        setHoveredStrategy('');
     };
 
     const handleCustomApologyChange = (event) => {
         setCustomApology(event.target.value);
-        localStorage.setItem('message', event.target.value);
-    };
 
-    const handleStrategySelect = (strategy) => {
-        setSelectedStrategy(strategy);
-        setClickedStrategyDescription(strategyDescriptions[strategy]);
-        // You might also want to clear the hovered strategy here
-        setHoveredStrategy('');
+        if (event.target.value) {
+            const randomStrategy = strategies[Math.floor(Math.random() * strategies.length)];
+            localStorage.setItem('strategy', randomStrategy); // Store a random strategy
+        }
+        localStorage.setItem('message', event.target.value); // Store the custom apology message
     };
 
     const handleStrategyHover = (strategy) => {
@@ -72,20 +75,29 @@ const Strategy = () => {
                                     {strategy}
                                 </button>
                                 {hoveredStrategy === strategyDescriptions[strategy] && (
-                                    <div className="tooltip-content">
-                                        {hoveredStrategy}
-                                    </div>
-                                     )}
+                                    <Tooltip content={hoveredStrategy} />
+                                )}
                             </div>
                         ))}
-                        {/* Display clicked strategy's description */}
                         {clickedStrategyDescription && (
                             <div className="fixed-description">
                                 {clickedStrategyDescription}
                             </div>
                         )}
                     </div>
-                    {/* ... rest of your component */}
+                    <div className="mb-4">
+                        <label htmlFor="customApology" className="block text-sm font-medium text-secondary-500">
+                            Custom Apology (optional)
+                        </label>
+                        <input
+                            type="text"
+                            id="customApology"
+                            value={customApology}
+                            onChange={handleCustomApologyChange}
+                            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-secondary-500 placeholder-secondary-500 text-secondary-500 rounded-t-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
+                            placeholder="Type your apology..."
+                        />
+                    </div>
                 </div>
                 <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">
                     <Link to={linkPath}>
