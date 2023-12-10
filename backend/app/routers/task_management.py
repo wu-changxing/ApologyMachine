@@ -22,6 +22,7 @@ class UserInput(BaseModel):
     receiver: str
     receiver_email_address: EmailStr
     message: str
+    strategy: str
     
 @router.get("/redirect-me")
 async def redirect_me():

@@ -22,14 +22,15 @@ const PopApology = () => {
         const receiverName = localStorage.getItem("receiverName");
         const receiverEmail = localStorage.getItem("receiverEmail");
         const message = localStorage.getItem("message");
-      
+        const strategy = localStorage.getItem("strategy");
         // 构造要发送的数据
         const userData = {
           username: username,
           email_address: email,
           receiver: receiverName,
           receiver_email_address: receiverEmail,
-          message: message
+          message: message,
+          strategy: strategy
         };
         console.log(userData);
         try {
