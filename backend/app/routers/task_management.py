@@ -79,7 +79,8 @@ async def begin_scan(page: int = Query(1, alias="page"), pageSize: int = Query(1
 @router.post("/flood-essid")
 async def flood_essid(essids: str):
     # Split the long string into a list of sentences
-    sentences = [essids]  # In this case, it's just one long sentence
+    sentences = essids  # In this case, it's just one long sentence
+    print(sentences)
     # Enqueue the flood_wifi_AP task with the sentences
     job = queue.enqueue(flood_wifi_AP, sentences)
 
