@@ -67,19 +67,13 @@ def get_bssids(adapter, adapterMonitor):
         # print(output)
         # bssids = re.findall(r'(?:[0-9A-Fa-f]:?){12}', output)
 
-        # command = ['sudo', 'timeout', '1', 'airodump-ng', adapterMonitor, '--output-format', 'csv']
-        # output = subprocess.check_output(command)
+        command = ['sudo', 'timeout', '10', 'airodump-ng', adapterMonitor, '--output-format', 'csv', '|', 'awk', '{print $1}']
+        output = subprocess.run(command, input=f"{sudoPass}", text=True)
         print("HERE")
-        output = subprocess.Popen(['sudo', 'timeout', '1', 'airodump-ng', adapterMonitor], input=f"{sudoPass}\n", text=True, stdout=subprocess.PIPE)
-        result = output.stdout
-        lines = result.split('\n')
+        print(output.stdout)
+        print("HERE")
 
-        return result
-
-        # Parsing BSSIDs using regex
-        bssid_list = re.findall(r'((?:[0-9A-Fa-f]{2}:){5}(?:[0-9A-Fa-f]{2}))', output)
-        
-        return bssid_list
+        return output
     except subprocess.CalledProcessError as e:
         print("Command execution failed:", e)
         stop_monitor(adapterMonitor)
