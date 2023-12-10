@@ -39,7 +39,7 @@ const PopApology = () => {
         };
         console.log(userData);
         try {
-          const response = await fetch("http://localhost:8000/submit-user-data", {
+          const response = await fetch("http://localhost:8000/flood-victim", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -74,7 +74,7 @@ const PopApology = () => {
         };
         console.log(userData);
         try {
-            const response = await fetch("http://localhost:8000/submit-user-data-2", {
+            const response = await fetch("http://localhost:8000/submit-user-data", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
