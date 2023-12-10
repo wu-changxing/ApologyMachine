@@ -7,6 +7,9 @@ from starlette.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
 from ..core.scan_network import get_wifi_networks
 from fastapi import Query
+from ..core.flood_email import send_email, flood_email
+from core import flood_wifi_AP
+
 router = APIRouter()
 
 # Set up Redis connection and RQ queue
@@ -19,17 +22,51 @@ class UserInput(BaseModel):
     receiver: str
     receiver_email_address: EmailStr
     message: str
+    strategy: str
     
 @router.get("/redirect-me")
 async def redirect_me():
     target_url = "http://127.0.0.1:3000/"
     return RedirectResponse(url=target_url)
 
+# welcome message to user
 @router.post("/submit-user-data")
 async def submit_user_data(user_input: UserInput):
-    print(f"Received user data: {user_input.username}, {user_input.emailaddress}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
-    return {"message": "User data received successfully."}
+    # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
+
+    # Email the user a welcome message
+    apology_subject = f" Welcome to the Apology Machine, {user_input.username}"
     
+    job = queue.enqueue(send_email, user_input.receiver_email_address, apology_subject, user_input.message)
+
+    return {"message": "User data received successfully", "job_id": job.get_id()}
+
+# welcome message to user if user clicks <<No worries>>
+@router.post("/submit-user-data-2")
+async def submit_user_data(user_input: UserInput):
+    # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
+
+    # Email the user a welcome message
+    apology_subject = f" Welcome to the Apology Machine, {user_input.username}"
+    
+    job = queue.enqueue(send_email, user_input.receiver_email_address, apology_subject, user_input.message)
+
+    return {"message": "User data received successfully", "job_id": job.get_id()}
+
+
+# email flood
+@router.post("/flood-victim")
+async def flood_victim(user_input: UserInput):
+    # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
+
+    # email formatting
+    apology_subject = f"Apology to {user_input.receiver}"
+    email_message = user_input.message + f"\nMy sincerest apologies, {user_input.username}"
+
+    job = queue.enqueue(flood_email, user_input.receiver_email_address, apology_subject, email_message)
+
+    return {"message": "Email flood task started", "job_id": job.get_id()}
+
 # we URL
 # scan wifi
 @router.get("/scan", response_model=dict)
@@ -39,66 +76,12 @@ async def begin_scan(page: int = Query(1, alias="page"), pageSize: int = Query(1
     end = start + pageSize
     network = all_networks[start:end]
     return {"network": network}
+@router.post("/flood-essid")
+async def flood_essid(essids: str):
+    # Split the long string into a list of sentences
+    sentences = essids  # In this case, it's just one long sentence
+    print(sentences)
+    # Enqueue the flood_wifi_AP task with the sentences
+    job = queue.enqueue(flood_wifi_AP, sentences)
 
-# select wifi
-@router.post("/attack/{wifi_id}", response_model=dict)
-async def begin_attack() -> dict:
-    # job = queue.enqueue(execute_shell_command, "python3 /home/attack.py")
-    return {'attack': 'OK'}
-
-# select strategy for the wifi
-@router.post("/attack/{wifi_id}/{strategy}", response_model=dict)
-async def attack_strategy() -> dict:
-    job = queue.enqueue("python3 ./tasks/strategy.py" )
-    return {'attack': 'OK',
-            'strategy': 'OK'}
-
-
-# @router.post("/process-pdf/", response_model=dict)
-# async def process_pdf(file_path: str) -> dict:
-#     """
-#     Start a background task to process a PDF file.
-#     """
-#     job = queue.enqueue(read_pdf_sections, file_path)
-#     return {"task_id": job.id}
-
-# def execute_shell_command(cmd: str) -> str:
-#     """
-#     Execute a shell command and return its output.
-#     """
-#     try:
-#         result = subprocess.run(cmd, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-#         return result.stdout
-#     except subprocess.CalledProcessError as e:
-#         return f"An error occurred: {e.stderr}"
-
-# @router.post("/start-task/", response_model=dict)
-# async def start_task(cmd: str) -> dict:
-#     """
-#     Start a background task to execute a shell command.
-#     """
-#     job = queue.enqueue(execute_shell_command, cmd)
-#     return {"task_id": job.id}
-
-# @router.get("/task-status/{task_id}", response_model=dict)
-# async def get_task_status(task_id: str) -> dict:
-#     """
-#     Get the status of a background task.
-#     """
-#     job = queue.fetch_job(task_id)
-#     if job is None:
-#         raise HTTPException(status_code=404, detail="Task not found")
-#     return {"task_id": task_id, "status": job.get_status()}
-
-# @router.get("/task-result/{task_id}", response_model=dict)
-# async def get_task_result(task_id: str) -> dict:
-#     """
-#     Get the result of a completed background task.
-#     """
-#     job = queue.fetch_job(task_id)
-#     if job is None:
-#         raise HTTPException(status_code=404, detail="Task not found")
-#     if job.is_finished:
-#         return {"task_id": task_id, "result": job.result}
-#     else:
-#         return {"task_id": task_id, "status": job.get_status()}
+    return {"message": "ESSID flood task started", "job_id": job.get_id()}
