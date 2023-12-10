@@ -1,12 +1,11 @@
 // Tooltip.js
-
-// This import is necessary to use JSX
 import React from 'react';
+import './Tooltip.css'; // This imports the CSS from Tooltip.css
 
-// The Tooltip component definition
 const Tooltip = ({ description }) => {
+  // Component definition using the styles defined in Tooltip.css
   return (
-    <div className="tooltip-content" style={{ position: 'absolute', backgroundColor: 'white', border: '1px solid black', padding: '5px' }}>
+    <div className="tooltip">
       {description}
     </div>
   );

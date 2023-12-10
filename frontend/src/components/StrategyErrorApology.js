@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import warning from "../assets/warning.png";
 const StrategyErrorApology = () => {
     const [response, setResponse] = useState('');
     async function submitUserData() {
@@ -43,6 +44,11 @@ const StrategyErrorApology = () => {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
+            <img 
+                src={warning} 
+                alt="warning" 
+                style={{ width: '160px', height: 'auto' }} // Set width as desired and height will adjust proportionally
+            />
             <div className="bg-pink-300 rounded-lg p-8 text-center mb-4">
                 <div className="mb-4">
                     <img src="path-to-your-sorry-image.png" alt="Sorry" className="mx-auto" />
