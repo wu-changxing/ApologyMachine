@@ -7,12 +7,13 @@ import Footer from "./components/Footer";
 import Landing from "./components/Landing"; // Import the new Landing component
 import Login from "./components/Login"; // Import the new Login component
 import Strategy from "./components/Strategy"; // Import the new Strategy component
-import Aaa from "./components/Aaa"; // Import the new aaa component
-import Bbb from "./components/Bbb"; // Import the new bbb component
+import Aaa from "./components/aaa"; // Import the new aaa component
+import Abb from "./components/bbb"; // Import the new bbb component
 import PopApology from "./components/PopApology"; // Import the new PopApology component
 import StrategyErrorApology from "./components/StrategyErrorApology"; // Import the new StrategyErrorApology component
 import Payment from "./components/Payment" //import the new Payment component
 import Receiver from "./components/Receiver";
+import ServiceInterruptionPage from "./components/ServiceInterruptionPage";
 function App() {
   return (
     <Router>
@@ -23,11 +24,12 @@ function App() {
             <Route exact path="/" element={<Login />} />
             <Route path="/Landing" element={<Landing />} />
             <Route path="/strategy" element={<Strategy />} />
-            <Route path="/aa" element={<Aaa />} />
-            <Route path="/bb" element={<Bbb />} />
+            <Route path="/Aaa" element={<aaa />} />
+            <Route path="/Bbb" element={<bbb />} />
             <Route path="/PopApology" element={<PopApology />} />
             <Route path="/Payment" element={<Payment />} />
             <Route path="/Receiver" element={<Receiver />} />
+            <Route path="/ServiceInterruptionPage" element={<ServiceInterruptionPage />} />
             <Route path="/StrategyErrorApology" element={<StrategyErrorApology />} />
           </Routes>
         </main>
