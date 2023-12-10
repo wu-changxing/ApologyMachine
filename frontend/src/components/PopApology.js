@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import WifiLogo from "../assets/confirm-wifi-2.png";
 
 const PopApology = () => {
     const [name, setName] = useState('');
@@ -16,6 +17,7 @@ const PopApology = () => {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
+            <img src={WifiLogo} alt="Confirm Wifi" className="wifi-logo" />
             <div className="bg-red-200 rounded p-4 text-center mb-4">
                 <img src="path-to-your-sorry-image.png" alt="Sorry" className="mx-auto mb-4" />
                 <p className="text-gray-700 mb-4">
