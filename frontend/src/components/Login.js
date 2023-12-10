@@ -22,7 +22,6 @@ function LoginPage() {
     localStorage.setItem("username", username);
     localStorage.setItem("email", email);
     localStorage.setItem("password", password);
-
     navigate("/Landing"); // 导航到 Landing 页面
   };
 

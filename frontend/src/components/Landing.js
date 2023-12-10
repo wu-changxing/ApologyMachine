@@ -34,7 +34,7 @@ function Landing() {
                 <div className="fixed bottom-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2">
                     <button className="py-2 px-4 font-bold text-white bg-red-500 rounded-full hover:bg-red-700 bottom-0 flex items-center">
                         <FaRobot className="inline-block mr-2" />
-                        <Link to="/aa" >
+                        <Link to="/Receiver" >
                             Attack!
                         </Link>  
                     </button>

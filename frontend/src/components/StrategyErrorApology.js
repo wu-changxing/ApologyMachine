@@ -2,10 +2,43 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 const StrategyErrorApology = () => {
     const [response, setResponse] = useState('');
-
+    async function submitUserData() {
+        // 从 localStorage 获取数据
+        const username = localStorage.getItem("username");
+        const email = localStorage.getItem("email");
+        const receiverName = localStorage.getItem("receiverName");
+        const receiverEmail = localStorage.getItem("receiverEmail");
+        const message = localStorage.getItem("message");
+      
+        // 构造要发送的数据
+        const userData = {
+          username: username,
+          email_address: email,
+          receiver: receiverName,
+          receiver_email_address: receiverEmail,
+          message: message
+        };
+      
+        try {
+          const response = await fetch("http://localhost:8000/submit-user-data", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userData)
+          });
+      
+          const data = await response.json();
+          console.log(data); // 处理或显示响应数据
+        } catch (error) {
+          console.error("There was an error!", error);
+        }
+      }
+      
     // Function to handle user's response
     const handleResponse = (userResponse) => {
         setResponse(userResponse);
+        submitUserData();
     };
 
     return (
@@ -29,7 +62,6 @@ const StrategyErrorApology = () => {
                 <div className="flex justify-center space-x-4">
                     <button
                         className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600"
-                        onClick={() => handleResponse("It's fine :)")}
                     >   
                         <Link to="/PopApology" >
                             It's fine :)
