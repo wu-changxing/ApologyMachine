@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
-
+import { Link } from 'react-router-dom';
 const strategies = [
     'Polite Regret Waltz',
     'Wonderland',
@@ -23,6 +23,7 @@ const Strategy = () => {
     const handleCustomApologyChange = (event) => {
         setCustomApology(event.target.value);
     };
+    const linkPath = customApology ? "/StrategyErrorApology" : "/bb";
 
     return (
         <div className="min-h-screen bg-bg-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -74,6 +75,11 @@ const Strategy = () => {
 
                     </div>
                 </div>
+                <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">
+                    <Link to={linkPath}>
+                        Attack!
+                    </Link>  
+                </button>
             </div>
         </div>
     );
