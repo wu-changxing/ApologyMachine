@@ -1,24 +1,12 @@
 /* Tooltip.css */
-
-.tooltip-content {
+.tooltip {
     position: absolute;
-    z-index: 100; /* Ensure it's above other elements */
-    background-color: white; /* Opaque background */
-    border: 1px solid #ccc; /* Add a border */
-    border-radius: 4px; /* Optional: rounded corners */
-    padding: 8px; /* Some padding inside the tooltip */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.18); /* Optional: add a shadow for depth */
-    width: max-content; /* Adapt width to the content */
-    max-width: 200px; /* You can set a max-width */
-    word-wrap: break-word; /* Ensures the text wraps */
-    top: 100%; /* Position it below the element */
-    left: 50%; /* Start from the middle of the element */
-    transform: translateX(-50%); /* Center the tooltip */
-    visibility: hidden; /* Hide tooltip by default */
-  }
-  
-  /* You can add a class to your element when you want to show the tooltip */
-  .tooltip-visible .tooltip-content {
-    visibility: visible; /* Show tooltip */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 100;
+    /* Additional styles for positioning and visibility */
   }
   
