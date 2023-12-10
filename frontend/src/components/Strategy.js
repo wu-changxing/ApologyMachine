@@ -76,10 +76,11 @@ const Strategy = () => {
                             ))}
                         </div>
                         {showDescription && clickedStrategyDescription && (
-                            <div className="fixed inset-0 bg-white bg-opacity-50 p-4 border border-gray-200 shadow-md rounded-lg z-10 w-11/12 text-center mx-auto mt-4">
+                            <div className="fixed inset-0 bg-white bg-opacity-75 p-4 border border-gray-200 shadow-md rounded-lg z-10 w-11/12 text-center mx-auto mt-4 text-lg"> {/* Adjust text-lg to the size you want */}
                                 {clickedStrategyDescription}
                             </div>
                         )}
+                        
                     </div>
                     <div className="mb-4">
                         <label htmlFor="customApology" className="block text-sm font-medium text-secondary-500">
