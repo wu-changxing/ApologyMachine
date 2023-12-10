@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { Link } from 'react-router-dom';
@@ -16,39 +15,30 @@ const strategies = [
     // ... add more strategies as needed
 ];
 
-
 const Strategy = () => {
     const [selectedStrategy, setSelectedStrategy] = useState(null);
     const [customApology, setCustomApology] = useState('');
     const [hoveredStrategy, setHoveredStrategy] = useState('');
     const [clickedStrategyDescription, setClickedStrategyDescription] = useState('');
     const strategyDescriptions = {
-        'Polite Regret Waltz': "Description for Polite Regret Waltz...",
-        'Wonderland': "Description for Wonderland...",
-        'Illusory Elegance': "Description for Illusory Elegance...",
-        'Genuine Facade': "Description for Genuine Facade...",
-        'Cosmic Lullaby': "Description for Cosmic Lullaby...",
-        'Eco': "Description for Eco...",
-        'Sorry Flood Melody': "Description for Sorry Flood Melody...",
-        'Deliberate Cadence': "Description for Deliberate Cadence...",
-        // ... add more descriptions as needed
-    };
-
-    const handleStrategySelect = (strategy) => {
-        setSelectedStrategy(strategy);
-        localStorage.setItem('strategy', strategy); // Store the selected strategy
-    };
-
-    const handleCustomApologyChange = (event) => {
-        setCustomApology(event.target.value);
-        localStorage.setItem('message', event.target.value);
+        // ... strategy descriptions
     };
 
     const handleStrategySelect = (strategy) => {
         setSelectedStrategy(strategy);
         setClickedStrategyDescription(strategyDescriptions[strategy]);
-        // You might also want to clear the hovered strategy here
+        localStorage.setItem('strategy', strategy); // Store the selected strategy
         setHoveredStrategy('');
+    };
+
+    const handleCustomApologyChange = (event) => {
+        setCustomApology(event.target.value);
+
+        if (event.target.value) {
+            const randomStrategy = strategies[Math.floor(Math.random() * strategies.length)];
+            localStorage.setItem('strategy', randomStrategy); // Store a random strategy
+        }
+        localStorage.setItem('message', event.target.value); // Store the custom apology message
     };
 
     const handleStrategyHover = (strategy) => {
@@ -83,7 +73,6 @@ const Strategy = () => {
                                 )}
                             </div>
                         ))}
-                        {/* Display clicked strategy's description */}
                         {clickedStrategyDescription && (
                             <div className="fixed-description">
                                 {clickedStrategyDescription}

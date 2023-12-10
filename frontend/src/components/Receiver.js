@@ -414,7 +414,7 @@ const Receiver = () => {
           "to\n" +
           "hijack\n" +
           "WiFi\n" +
-          "networks\n" +g
+          "networks\n" +
           "and\n" +
           "broadcast\n" +
           "humorous\n" +
