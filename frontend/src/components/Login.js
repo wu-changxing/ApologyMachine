@@ -22,7 +22,7 @@ function LoginPage() {
   };
 
   return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="min-h-screen mt-8 flex items-center justify-center bg-gray-100">
         <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-96">
           <h3 className="text-3xl font-semibold text-center mb-6">Login to your account</h3>
           <form onSubmit={handleSubmit}>

@@ -5,7 +5,7 @@ from redis import Redis
 import subprocess
 from starlette.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
-from ..core.scan import get_wifi_networks
+from ..core.scan_network import get_wifi_networks
 router = APIRouter()
 
 # Set up Redis connection and RQ queue
