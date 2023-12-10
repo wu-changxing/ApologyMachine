@@ -101,13 +101,8 @@ const Strategy = () => {
                 </div>
                 <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">
                     <Link to={linkPath}>
-<<<<<<< HEAD
-                        Attack!
-                    </Link>
-=======
                         Apology Now!
                     </Link>  
->>>>>>> cdfa6dd5a94dfe318e94a6b76ee631315f631fd7
                 </button>
             </div>
         </div>

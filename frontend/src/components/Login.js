@@ -13,7 +13,7 @@ function LoginPage() {
     event.preventDefault();
 
     // 检查 email 是否为空
-    if (!(username && email && password)) {
+    if (!(username && email)) {
       alert("Username, email and password cannot be empty!"); // 显示提示框
       return; // 阻止进一步处理
     }
