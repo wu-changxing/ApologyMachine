@@ -18,7 +18,6 @@ function App() {
             <Route exact path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/strategy" element={<Strategy />} />
-            <Route path="/home" element={<Home />} />
           </Routes>
         </main>
         <Footer />
