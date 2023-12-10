@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 const Receiver = () => {
   const [user, setUser] = useState({
-    username: '',
-    firstName: '',
+    firstname: '',
+    nickname: '',
     email: '',
   });
 
@@ -18,40 +18,44 @@ const Receiver = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle the registration logic here
-    // This might involve sending a request to your backend server
     console.log(user);
   };
 
   return (
-    <div className="register-container">
-      <form onSubmit={handleSubmit} className="register-form">
-        <h2>Register account for your best friend</h2>
-        <div className="input-group">
-          <label htmlFor="username">
-            <i className="fas fa-user" /> Insert Name
+    <div className="register-container" style={{ margin: '20px auto', maxWidth: '300px' }}>
+      <form onSubmit={handleSubmit} className="register-form" style={{ textAlign: 'left' }}>
+      <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Register account for your dearest friend!</h2>        <div className="input-group" style={{ marginBottom: '10px' }}>
+          <label htmlFor="firstname" style={{ display: 'block' }}>
+          First Name
           </label>
           <input
             type="text"
-            id="username"
-            name="username"
-            value={user.username}
+            id="firstname"
+            name="firstname"
+            value={user.firstname}
             onChange={handleChange}
             required
+            style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
           />
         </div>
-        <div className="input-group">
-          <label htmlFor="firstName">First Name</label>
+        <div className="input-group" style={{ marginBottom: '10px' }}>
+          <label htmlFor="nickname" style={{ display: 'block' }}>
+             A.K.A
+          </label>
           <input
             type="text"
-            id="firstName"
-            name="firstName"
-            value={user.firstName}
+            id="nickname"
+            name="nickname"
+            value={user.nickname}
             onChange={handleChange}
             required
+            style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
           />
         </div>
-        <div className="input-group">
-          <label htmlFor="email">Email</label>
+        <div className="input-group" style={{ marginBottom: '10px' }}>
+          <label htmlFor="email" style={{ display: 'block' }}>
+            Email
+          </label>
           <input
             type="email"
             id="email"
@@ -59,9 +63,12 @@ const Receiver = () => {
             value={user.email}
             onChange={handleChange}
             required
+            style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
           />
         </div>
-        <button type="submit" className="register-btn">Register now!</button>
+        <button type="submit" className="register-btn" style={{ width: '100%', padding: '8px', backgroundColor: 'blue', color: 'white', borderRadius: '4px', cursor: 'pointer' }}>
+          Register now!
+        </button>
       </form>
     </div>
   );
