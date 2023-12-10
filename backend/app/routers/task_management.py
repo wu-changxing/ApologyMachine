@@ -29,20 +29,8 @@ async def redirect_me():
     target_url = "http://127.0.0.1:3000/"
     return RedirectResponse(url=target_url)
 
-# welcome message to user
-@router.post("/submit-user-data")
-async def submit_user_data(user_input: UserInput):
-    # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
-
-    # Email the user a welcome message
-    apology_subject = f" Welcome to the Apology Machine, {user_input.username}"
-    
-    job = queue.enqueue(send_email, user_input.receiver_email_address, apology_subject, user_input.message)
-
-    return {"message": "User data received successfully", "job_id": job.get_id()}
-
 # Send apology to receiver if user clicks <<No worries>>
-@router.post("/submit-user-data-2")
+@router.post("/submit-user-data")
 async def submit_user_data(user_input: UserInput):
     # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
 
@@ -54,10 +42,9 @@ async def submit_user_data(user_input: UserInput):
 
     return {"message": "User data received successfully", "job_id": job.get_id()}
 
-
 # floods user if user clicks <<HOW ARE YOU!>>
-@router.post("/flood")
-async def flood_user(user_input: UserInput):
+@router.post("/flood-victim")
+async def flood_victim(user_input: UserInput):
     # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
 
     # email formatting
