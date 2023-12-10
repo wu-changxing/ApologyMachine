@@ -43,16 +43,17 @@ const StrategyErrorApology = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
-            <img 
-                src={warning} 
-                alt="warning" 
-                style={{ width: '160px', height: 'auto' }} // Set width as desired and height will adjust proportionally
-            />
+        <div
+            style={{
+                backgroundImage: `url(${warning})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                height: '100vh', // This ensures the background covers the full screen height
+            }}
+        >
+         <div className="flex flex-col items-center justify-center h-full p-4" style={{ backgroundColor: 'rgba(255, 192, 203, 0.85)' }}> {/* Adjust the rgba for pink transparency */}
             <div className="bg-pink-300 rounded-lg p-8 text-center mb-4">
-                <div className="mb-4">
-                    <img src="path-to-your-sorry-image.png" alt="Sorry" className="mx-auto" />
-                </div>
+      
                 <div className="mb-4">
                     <p className="text-lg text-gray-800 font-bold">1102101</p>
                     <p className="text-gray-800">
@@ -66,29 +67,26 @@ const StrategyErrorApology = () => {
                     </p>
                 </div>
                 <div className="flex justify-center space-x-4">
-                    <button
-                        className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600"
-                    >   
-                        <Link to="/PopApology" >
-                            It's fine :)
-                        </Link>
-                        
-                    </button>
+                    <Link to="/PopApology" className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600">
+                        It's fine :)
+                    </Link>
                     <button
                         className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600"
                         onClick={() => handleResponse('How dare you!')}
-                    >   
+                    >
                         How dare you!
                     </button>
                 </div>
             </div>
             {response && (
-                <div className="mt-4 p-4 rounded shadow-lg bg-white">
-                    <p className="text-gray-800">Your response: <span className="font-semibold">{response}</span></p>
-                </div>
-            )}
+                    <div className="mt-4 p-4 rounded shadow-lg bg-white">
+                        <p className="text-gray-800">Your response: <span className="font-semibold">{response}</span></p>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
+
 
 export default StrategyErrorApology;
