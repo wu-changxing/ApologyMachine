@@ -72,7 +72,7 @@ function LoginPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     // 检查 email 是否为空
     if (!username) {
       alert("Username cannot be empty!"); // 显示提示框
@@ -87,17 +87,24 @@ function LoginPage() {
     navigate("/Landing"); // 导航到 Landing 页面
   };
 
-  return (
-    <div className="min-h-screen mt-8 flex items-center justify-center bg-gray-100">
+  return ( /*min-h-screen --> may need to add again. */
+    <div className="mt-8 flex items-center justify-center bg-gray-100">
+      {/* <p>djsfhadsjj</p> */}
+
+      {/* Adding the navigation bar section*/}
+
+      {/* Adding the image and empty div section*/}
+
+
       <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-96">
-        <h3 className="text-3xl font-semibold text-center mb-6">Register your account</h3>
+        <h3 className="text-3xl font-semibold text-center mb-6">You want to say sorry?</h3>
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div className="flex items-center border rounded-md p-2">
               <FaEnvelope className="text-gray-400 mr-2" />
               <input
                 type="text"
-                placeholder="Username"
+                placeholder="Enter Your Name"
                 onChange={(e) => setUsername(e.target.value)}
                 className="flex-grow py-2 px-2 outline-none"
               />
@@ -106,12 +113,12 @@ function LoginPage() {
               <FaEnvelope className="text-gray-400 mr-2" />
               <input
                 type="email"
-                placeholder="Email"
+                placeholder="Enter Your Email"
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-grow py-2 px-2 outline-none"
               />
             </div>
-            <div className="flex items-center border rounded-md p-2">
+            {/* <div className="flex items-center border rounded-md p-2">
               <FaLock className="text-gray-400 mr-2" />
               <input
                 type="password"
@@ -119,7 +126,7 @@ function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 className="flex-grow py-2 px-2 outline-none"
               />
-            </div>
+            </div> */}
             <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">
               Apologise!
             </button>
