@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const RegisterPage = () => {
+const Receiver = () => {
   const [user, setUser] = useState({
     username: '',
     firstName: '',
@@ -67,4 +67,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default Receiver;

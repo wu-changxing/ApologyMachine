@@ -12,7 +12,7 @@ import bbb from "./components/bbb"; // Import the new bbb component
 import PopApology from "./components/PopApology"; // Import the new PopApology component
 import StrategyErrorApology from "./components/StrategyErrorApology"; // Import the new StrategyErrorApology component
 import Payment from "./components/Payment" //import the new Payment component
-
+import Receiver from "./components/Receiver";
 function App() {
   return (
     <Router>
@@ -27,6 +27,7 @@ function App() {
             <Route path="/bbb" element={<bbb />} />
             <Route path="/PopApology" element={<PopApology />} />
             <Route path="/Payment" element={<Payment />} />
+            <Route path="/Receiver" element={<Receiver />} />
             <Route path="/StrategyErrorApology" element={<StrategyErrorApology />} />
           </Routes>
         </main>
