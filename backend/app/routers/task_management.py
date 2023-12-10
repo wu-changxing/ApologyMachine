@@ -6,6 +6,7 @@ import subprocess
 from starlette.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
 from ..core.scan_network import get_wifi_networks
+from fastapi import Query
 router = APIRouter()
 
 # Set up Redis connection and RQ queue
@@ -32,8 +33,11 @@ async def submit_user_data(user_input: UserInput):
 # we URL
 # scan wifi
 @router.get("/scan", response_model=dict)
-async def begin_scan() -> dict:
-    network = get_wifi_networks()
+async def begin_scan(page: int = Query(1, alias="page"), pageSize: int = Query(10, alias="pageSize")) -> dict:
+    all_networks = get_wifi_networks()
+    start = (page - 1) * pageSize
+    end = start + pageSize
+    network = all_networks[start:end]
     return {"network": network}
 
 # select wifi
