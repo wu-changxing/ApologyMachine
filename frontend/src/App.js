@@ -7,6 +7,8 @@ import Landing from "./components/Landing"; // Import the new Landing component
 import Login from "./components/Login"; // Import the new Login component
 import Strategy from "./components/Strategy"; // Import the new Strategy component
 import Payment from "./components/Payment";
+import aaa from "./components/aaa";
+import bbb from "./components/bbb";
 function App() {
   return (
     <Router>
@@ -18,6 +20,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/strategy" element={<Strategy />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/aaa" element={<aaa />} />
+            <Route path="/bbb" element={<bbb />} />
 
           </Routes>
         </main>
