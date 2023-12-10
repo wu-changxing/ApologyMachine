@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Receiver = () => {
   const [name, setName] = useState('');
@@ -491,7 +491,9 @@ const Receiver = () => {
           </div>
 
           <button type="submit" className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <Link to="/strategy" >
             Apology now!
+            </Link>
           </button>
         </form>
       </div>
