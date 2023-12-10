@@ -16,8 +16,8 @@ redis_conn = Redis()
 queue = Queue(connection=redis_conn)
 
 class UserInput(BaseModel):
-    # username: str
-    # email_address: EmailStr
+    username: str
+    email_address: EmailStr
     receiver: str
     receiver_email_address: EmailStr
     message: str
@@ -31,10 +31,13 @@ async def redirect_me():
 async def submit_user_data(user_input: UserInput):
     # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
 
-    apology_subject = "Apology"
+    # email formatting
+    apology_subject = f"Apology to {user_input.receiver}"
+    email_message = user_input.message + f"\nMy sincerest apologies, {user_input.username}"
+    
     # job = queue.enqueue(send_email, user_input.receiver_email_address, apology_subject, user_input.message)
 
-    email = send_email(user_input.receiver_email_address, apology_subject, user_input.message)
+    email = send_email(user_input.receiver_email_address, apology_subject, email_message)
 
     # return {"message" : f"Received user data: {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}"}
 
