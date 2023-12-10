@@ -7,6 +7,8 @@ from starlette.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
 from ..core.scan_network import get_wifi_networks
 from fastapi import Query
+from ..core.flood_email import send_email
+
 router = APIRouter()
 
 # Set up Redis connection and RQ queue
@@ -14,8 +16,8 @@ redis_conn = Redis()
 queue = Queue(connection=redis_conn)
 
 class UserInput(BaseModel):
-    username: str
-    email_address: EmailStr
+    # username: str
+    # email_address: EmailStr
     receiver: str
     receiver_email_address: EmailStr
     message: str
@@ -27,8 +29,18 @@ async def redirect_me():
 
 @router.post("/submit-user-data")
 async def submit_user_data(user_input: UserInput):
-    print(f"Received user data: {user_input.username}, {user_input.emailaddress}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
-    return {"message": "User data received successfully."}
+    # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
+
+    apology_subject = "Apology"
+    # job = queue.enqueue(send_email, user_input.receiver_email_address, apology_subject, user_input.message)
+
+    email = send_email(user_input.receiver_email_address, apology_subject, user_input.message)
+
+    # return {"message" : f"Received user data: {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}"}
+
+    return {"message": email}
+
+    # return {"message": "User data received successfully."}
     
 # we URL
 # scan wifi
