@@ -22,6 +22,7 @@ const Strategy = () => {
 
     const handleCustomApologyChange = (event) => {
         setCustomApology(event.target.value);
+        localStorage.setItem('message', event.target.value);
     };
     const linkPath = customApology ? "/StrategyErrorApology" : "/PopApology";
 
