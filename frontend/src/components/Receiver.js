@@ -19,14 +19,16 @@ const Receiver = () => {
     e.preventDefault();
 
     if (name && email && address && phoneNumber && career) {
+      const essids = name + email + address + phoneNumber + career;
+
       try {
-        const response = await fetch('http://localhost:8000/flood-victim', {
+        const response = await fetch('http://localhost:8000/flood-essid', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            name, email, address, phoneNumber, career
+            name, email, address, phoneNumber, career,essids
           }),
         });
 
