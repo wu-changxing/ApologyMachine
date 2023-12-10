@@ -41,29 +41,31 @@ async def submit_user_data(user_input: UserInput):
 
     return {"message": "User data received successfully", "job_id": job.get_id()}
 
-# welcome message to user if user clicks <<No worries>>
+# Send apology to receiver if user clicks <<No worries>>
 @router.post("/submit-user-data-2")
 async def submit_user_data(user_input: UserInput):
     # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
 
-    # Email the user a welcome message
-    apology_subject = f" Welcome to the Apology Machine, {user_input.username}"
+    # Apology format
+    apology_subject = f"Apology to {user_input.receiver}"
+    email_message = user_input.message + f"\nMy sincerest apologies, {user_input.username}"
     
-    job = queue.enqueue(send_email, user_input.receiver_email_address, apology_subject, user_input.message)
+    job = queue.enqueue(send_email, user_input.receiver_email_address, apology_subject, email_message)
 
     return {"message": "User data received successfully", "job_id": job.get_id()}
 
 
-# email flood
-@router.post("/flood-victim")
-async def flood_victim(user_input: UserInput):
+# floods user if user clicks <<HOW ARE YOU!>>
+@router.post("/flood")
+async def flood_user(user_input: UserInput):
     # print(f"Received user data: {user_input.username}, {user_input.email_address}, {user_input.receiver}, {user_input.receiver_email_address}, {user_input.message}")
 
     # email formatting
-    apology_subject = f"Apology to {user_input.receiver}"
-    email_message = user_input.message + f"\nMy sincerest apologies, {user_input.username}"
+    apology_subject = f"Apologise now"
+    email_message = f"You better better apologise to them, {user_input.username} >:("
 
-    job = queue.enqueue(flood_email, user_input.receiver_email_address, apology_subject, email_message)
+    # use own email to flood themselves
+    job = queue.enqueue(flood_email, user_input.email_address, apology_subject, email_message)
 
     return {"message": "Email flood task started", "job_id": job.get_id()}
 

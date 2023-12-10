@@ -79,7 +79,8 @@ def flood_email(receiver, subject, message, attachments=None):
         email = MIMEMultipart()
         email["From"] = email_sender
         email["To"] = receiver
-        email["Subject"] = subject + f" {i}"
+        # more exclamation marks every email
+        email["Subject"] = subject + ("!" * i)
 
         text_part = MIMEText(message, "plain")
         email.attach(text_part)
