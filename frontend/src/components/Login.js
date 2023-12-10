@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +24,7 @@ function LoginPage() {
   return (
       <div className="min-h-screen mt-8 flex items-center justify-center bg-gray-100">
         <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-96">
-          <h3 className="text-3xl font-semibold text-center mb-6">Login to your account</h3>
+          <h3 className="text-3xl font-semibold text-center mb-6">Register your account</h3>
           <form onSubmit={handleSubmit}>
             <div className="space-y-4">
               <div className="flex items-center border rounded-md p-2">
@@ -48,11 +48,10 @@ function LoginPage() {
                 />
               </div>
               <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">
-                Login
+                <Link to="/Landing" >
+                Apologise!
+                </Link>  
               </button>
-              <a href="#" className="text-blue-600 hover:underline text-sm">
-                Forgot password?
-              </a>
             </div>
           </form>
         </div>

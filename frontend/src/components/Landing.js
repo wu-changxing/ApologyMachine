@@ -3,7 +3,7 @@ import React from "react";
 import SorryLogo from "../assets/wifi-robot-say-sorry_1.png";
 import { FaRobot } from "react-icons/fa";
 import NetworkList from "./NetworkList";
-
+import { Link } from "react-router-dom";
 function Landing() {
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
@@ -33,7 +33,10 @@ function Landing() {
                 </div>
                 <div className="fixed bottom-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2">
                     <button className="py-2 px-4 font-bold text-white bg-red-500 rounded-full hover:bg-red-700 bottom-0 flex items-center">
-                        <FaRobot className="inline-block mr-2" /> Attack!
+                        <FaRobot className="inline-block mr-2" />
+                        <Link to="/Landing" >
+                            Attack!
+                        </Link>  
                     </button>
                 </div>
             </div>
